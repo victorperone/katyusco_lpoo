@@ -1,10 +1,10 @@
 package animais;
 
 public class Animais {
-    String Nome = "";
-    String tipo = "";
-    String Especie = "";
-    Float Peso;
+    protected String Nome = "";
+    protected String tipo = "";
+    protected String Especie = "";
+    protected Float Peso;
 
     public String getNome() {
         return Nome;

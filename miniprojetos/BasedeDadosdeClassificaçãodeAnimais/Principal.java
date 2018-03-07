@@ -110,7 +110,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Botao_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_adicionarActionPerformed
-        menu_b janela = new menu_b();
+        Adiciona_menu janela = new Adiciona_menu();
         janela.setVisible(true);
     }//GEN-LAST:event_Botao_adicionarActionPerformed
 

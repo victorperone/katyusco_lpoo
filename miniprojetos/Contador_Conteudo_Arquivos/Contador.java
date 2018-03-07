@@ -21,6 +21,7 @@ public class Contador extends Thread{
     public static int totalespeciais;
     public static long tempototal;
     
+    //Metodo para totalizar e imprimir todos os atributos globais
     public void ImprimeTotais(){
         System.out.print("\narquivos " + nome + " processados em " + tempototal + "mseg\n");
             System.out.print("linhas = " + totallinhas);
@@ -34,10 +35,10 @@ public class Contador extends Thread{
     }
     
     public void run(){
-        try (InputStream is = new FileInputStream(nome)) {
-            InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-            BufferedReader br = new BufferedReader(isr);
-            
+        try (InputStream is = new FileInputStream(nome)) {   //Lê bytes do arquivo com "nome" selecionado
+            InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);   //pega o byte lido acima e transcreve para char UTF-8
+            BufferedReader br = new BufferedReader(isr);   //Concatena os chars em uma String
+            // Variaveis locais para contagem por aqruivo selecionado
             String linha;
             String[] palavras;
             int quantidadepalavras = 0;
@@ -48,16 +49,20 @@ public class Contador extends Thread{
             int quantidadeespacos = 0;
             int quantidadeespeciais = 0;
             long tepoexecucao;
+            //Strings de comparacao para saber consoantes e digitos 
             String digitos = "0123456789";
             String consoantes = "bcdfghjklmnpqrstvxwyz";
-
+			
+            //Condicao continua enquanto houver outra linha no arquivo
             while ((linha = br.readLine()) != null){
+                //separa as frases e conta as partes (totalizando as palavras na linha)
                 palavras = linha.split("\\s+");
                 quantidadepalavras += palavras.length;
-                
+                //Quantidade de linhas, quantidade de vezes que o laço executa
                 quantidadelinhas += 1;
+		//percorre a linha caracter a caracter ate o tamanho total
                 for(int i = 0; i < linha.length(); i++){
-
+                    //verifica se o caracter e vogal
                     if(linha.substring(i, i + 1).toLowerCase().equals("a") || 
                             linha.substring(i, i + 1).toLowerCase().equals("e") || 
                             linha.substring(i, i + 1).toLowerCase().equals("i") || 
@@ -66,16 +71,20 @@ public class Contador extends Thread{
                         
                         quantidadevogais += 1;
                     } else{
+			//verifica se o caracter e consoante
                         if(consoantes.contains(linha.substring(i, i + 1))){
                             quantidadeconsoantes += 1;
                         } else {
+                            //verifica se o caracter e digito
                             if(digitos.contains(linha.substring(i, i + 1))){
                                 qantidadenumeros += 1;
                             } else {
+				//verifica se o caracter e espaco ou tabulacao
                                 if (linha.substring(i, i + 1).equals(" ") || 
                                         linha.substring(i, i + 1).contains("\t")){
                                     quantidadeespacos += 1;
                                 } else {
+                                    //caso nao seja nenhum dos anteriores o caracter e especial
                                     quantidadeespeciais += 1;
                                 }
                             }
@@ -87,6 +96,7 @@ public class Contador extends Thread{
             br.close();
             isr.close();
             long fim = System.currentTimeMillis();
+            //Calcula o tempo de execucao subtraindo o tempo de inicio do tempo de finaizar
             tepoexecucao = (fim - inicio);
             System.out.print("\narquivo " + nome + " processado em " + tepoexecucao + "mseg\n");
             tempototal += tepoexecucao;

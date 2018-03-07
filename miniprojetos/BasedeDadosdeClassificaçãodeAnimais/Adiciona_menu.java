@@ -39,6 +39,7 @@ public class Adiciona_menu extends javax.swing.JFrame {
         Campo_Peso = new javax.swing.JTextField();
         Adiciona_cavalo = new javax.swing.JButton();
         Adiciona_anfibio = new javax.swing.JButton();
+        Adiciona_ave = new javax.swing.JButton();
         Adiciona_beija_Flor = new javax.swing.JButton();
         Adiciona_reptil = new javax.swing.JButton();
 
@@ -88,6 +89,13 @@ public class Adiciona_menu extends javax.swing.JFrame {
             }
         });
 
+        Adiciona_ave.setText("Ave");
+        Adiciona_ave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Adiciona_aveActionPerformed(evt);
+            }
+        });
+
         Adiciona_beija_Flor.setText("Beija-Flor");
         Adiciona_beija_Flor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,8 +138,13 @@ public class Adiciona_menu extends javax.swing.JFrame {
                 .addComponent(Adiciona_anfibio)
                 .addGap(48, 48, 48)
                 .addComponent(Adiciona_reptil)
-                .addGap(45, 45, 45)
-                .addComponent(Adiciona_beija_Flor)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(Adiciona_ave))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(Adiciona_beija_Flor)))
                 .addGap(96, 96, 96))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -161,13 +174,13 @@ public class Adiciona_menu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Adiciona_mamifero, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Adiciona_anfibio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Adiciona_reptil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Adiciona_reptil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Adiciona_ave, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(92, 92, 92)))
                 .addGap(43, 43, 43))
         );
 
-        setSize(new java.awt.Dimension(656, 357));
-        setLocationRelativeTo(null);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Adiciona_macacoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adiciona_macacoActionPerformed
@@ -217,6 +230,18 @@ public class Adiciona_menu extends javax.swing.JFrame {
             Logger.getLogger(Adiciona_menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_adiciona_animalActionPerformed
+
+    private void Adiciona_aveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adiciona_aveActionPerformed
+        Aves animal = new Aves();
+        animal.setNome(this.Campo_Nome.getText());
+        animal.setPeso(Float.parseFloat(this.Campo_Peso.getText()));
+        
+        try {
+            this.Data.Adiciona_animal(animal);
+        } catch (IOException ex) {
+            Logger.getLogger(Adiciona_menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_Adiciona_aveActionPerformed
 
     private void Adiciona_beija_FlorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adiciona_beija_FlorActionPerformed
         Beija_Flor animal = new  Beija_Flor();
@@ -306,6 +331,7 @@ public class Adiciona_menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Adiciona_anfibio;
+    private javax.swing.JButton Adiciona_ave;
     private javax.swing.JButton Adiciona_beija_Flor;
     private javax.swing.JButton Adiciona_cavalo;
     private javax.swing.JButton Adiciona_humano;
